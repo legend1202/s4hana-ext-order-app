@@ -3,7 +3,7 @@ package com.sap.cloud.extensibility.servlets;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -37,10 +37,8 @@ public class OrderConfirmServlet extends HttpServlet {
 
 	private static final String ERRORPAGE_HTML = "errorpage.html";
 
-	@Inject
 	private SalesOrder salesorder;
 
-	@Inject
 	private SalesOrderItem salesOrderItem;
 
 	@Inject
@@ -66,7 +64,7 @@ public class OrderConfirmServlet extends HttpServlet {
 
 			setSalesOrderDetails(request);
 
-			salesorder.setCustomerPurchaseOrderDate(Calendar.getInstance());
+			salesorder.setCustomerPurchaseOrderDate(LocalDateTime.now());
 
 			// the result contains the newly created Sales Order number
 			SalesOrder soResult = salesOrderService.create(salesorder);
