@@ -1,30 +1,54 @@
 This program references the following third party open source or other free download components.
 The third party licensors of these components may provide additional license rights,
 terms and conditions and/or require certain notices as described below.
- 
-REST Assured (com.jayway.restassured:rest-assured:2.8.0 - http://code.google.com/p/rest-assured)
+
+API for SAP Cloud Platform (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.44.12 - https://hana.ondemand.com)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+SAP S/4HANA - All (com.sap.cloud.s4hana:s4hana-all:2.20.1 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+SAP S/4HANA - Test Utilities (com.sap.cloud.s4hana:testutil:2.20.1 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+Cloud Platform - SAP CP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.20.1 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+Quality - All Listeners (com.sap.cloud.s4hana.quality:listeners-all:2.20.1 - https://www.sap.com/s4sdk)
+Licensed under SAP DEVELOPER LICENSE AGREEMENT
+
+REST Assured (io.rest-assured:rest-assured:3.2.0 - http://code.google.com/p/rest-assured)
 Licensed under Apache 2.0
- 
+
+javax.inject (javax.inject:javax.inject:1 - http://code.google.com/p/atinject/)
+Licensed under The Apache Software License, Version 2.0
+
 JUnit (junit:junit:4.12 - http://junit.org)
 Licensed under Eclipse Public License 1.0
- 
-OpenEJB :: Arquillian Adaptors Parent :: Embedded Adaptor (org.apache.openejb:arquillian-tomee-embedded:1.7.5 - http://tomee.apache.org/arquillian/arquillian-tomee-embedded)
+
+OpenEJB :: Arquillian Adaptors Parent :: Embedded Adaptor (org.apache.tomee:arquillian-tomee-embedded:7.0.5 - http://tomee.apache.org/arquillian/arquillian-tomee-embedded)
 Licensed under Apache License, Version 2.0
- 
-OpenEJB :: TomEE :: TomEE Embedded (org.apache.openejb:tomee-embedded:1.7.5 - http://tomee.apache.org/tomee/tomee-embedded)
+
+OpenEJB :: TomEE :: TomEE Embedded (org.apache.tomee:tomee-embedded:7.0.5 - http://tomee.apache.org/tomee/tomee-embedded)
 Licensed under Apache License, Version 2.0
- 
-OpenEJB :: TomEE :: RS Web Services (org.apache.openejb:tomee-jaxrs:1.7.5 - http://tomee.apache.org/tomee/tomee-jaxrs)
+
+OpenEJB :: TomEE :: RS Web Services (org.apache.tomee:tomee-jaxrs:7.0.5 - http://tomee.apache.org/tomee/tomee-jaxrs)
 Licensed under Apache License, Version 2.0
- 
+
 ModelMapper (org.modelmapper:modelmapper:1.1.2 - http://modelmapper.org/modelmapper)
 Licensed under Apache License, Version 2.0
- 
-Project Lombok (org.projectlombok:lombok:1.16.18 - https://projectlombok.org)
+
+Project Lombok (org.projectlombok:lombok:1.18.2 - https://projectlombok.org)
 Licensed under The MIT License
- 
-SLF4J API Module (org.slf4j:slf4j-api:1.7.12 - http://www.slf4j.org)
+
+JCL 1.2 implemented over SLF4J (org.slf4j:jcl-over-slf4j:1.7.26 - http://www.slf4j.org)
 Licensed under MIT License
- 
+
+SLF4J API Module (org.slf4j:slf4j-api:1.7.26 - http://www.slf4j.org)
+Licensed under MIT License
+
+SLF4J Simple Binding (org.slf4j:slf4j-simple:1.7.26 - http://www.slf4j.org)
+Licensed under MIT License
+
 thymeleaf (org.thymeleaf:thymeleaf:3.0.0.RELEASE - http://www.thymeleaf.org)
 Licensed under The Apache Software License, Version 2.0

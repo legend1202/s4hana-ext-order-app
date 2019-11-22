@@ -1,5 +1,6 @@
 package com.sap.cloud.extensibility.services;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.salesorder.SalesOrder
 import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.salesorder.SalesOrderCreateFluentHelper;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.services.DefaultSalesOrderService;
 
+@Stateless
 public class SalesOrderService {
 
 	/** The Constant LOGGER. */

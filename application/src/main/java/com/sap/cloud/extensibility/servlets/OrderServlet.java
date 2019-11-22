@@ -24,7 +24,7 @@ import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.productmaster.Product
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
-	
+
 	private static final String N_A = "n/a";
 
 	private static final String EN = "EN";
@@ -41,9 +41,6 @@ public class OrderServlet extends HttpServlet {
 
 	@Inject
 	private ProductService productService;
-	
-	@Inject
-	private Product product;
 
 	private static final long serialVersionUID = 123456789L;
 
@@ -54,31 +51,33 @@ public class OrderServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
-		
+
 		WebContext context = new WebContext(request, response, request.getServletContext());
-		
+
+		Product product = null;
+
 		try {
 			String productId = request.getParameter(PRODUCT_ID);
-			
+
 			if (productId != null) {
-				
+
 				product = productService.findById(productId);
 			}
-			
+
 			context.setVariable(PRODUCT, product);
-			
+
 			context.setVariable(EN_DESCRIPTION, getDescription(product));
 
 			context.setVariable(OTC_RECORD, new OneTimeCustomerOrder());
-			
+
 			engine.process(ORDER_HTML, context, response.getWriter());
 
 		} catch (Exception e) {
-			
-			LOGGER.info("Exception occured while fetching the products and the exception is :"+ e);
-			
+
+			LOGGER.info("Exception occured while fetching the products and the exception is :" + e);
+
 			engine.process(ERRORPAGE_HTML, context, response.getWriter());
 
 		}

@@ -17,9 +17,10 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import com.sap.cloud.extensibility.config.TemplateEngineUtil;
-import com.sap.cloud.extensibility.model.CustomProduct;
-import com.sap.cloud.extensibility.services.ProductService;
 import com.sap.cloud.sdk.cloudplatform.logging.CloudLoggerFactory;
+import com.sap.cloud.sdk.odatav2.connectivity.ODataException;
+import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.productmaster.Product;
+import com.sap.cloud.sdk.s4hana.datamodel.odata.services.DefaultProductMasterService;
 
 @WebServlet("/")
 public class ProductServlet extends HttpServlet {
@@ -45,92 +46,109 @@ public class ProductServlet extends HttpServlet {
 	private static final Logger LOGGER = CloudLoggerFactory.getLogger(OrderServlet.class);
 
 	@Inject
-	ProductService productService;
+	private DefaultProductMasterService defaultProductMasterService;
 
-	List<CustomProduct> allProducts;
-	
+	List<Product> allProducts;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		PropertiesConfiguration config = new PropertiesConfiguration();
-		
+
 		TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
-		
+
 		WebContext context = new WebContext(request, response, request.getServletContext());
-		
-		List<CustomProduct> webSalebleProducts = null;
-		
-		List<CustomProduct> nonWebSalebleProducts = null;
-		
+
+		List<Product> webSalebleProducts = null;
+
+		List<Product> nonWebSalebleProducts = null;
+
 		try {
 
 			config.load(APPLICATION_PROPERTIES);
 
 			String productGroup = config.getString(S4CLD_PRODUCTGROUP);
 
-			allProducts = productService.findCustomerProductsByProductGroup(productGroup);
-			
+			// defaultProductMasterService.getProductByKey(productId).execute();
+
+			allProducts = findByProductGroup(productGroup);
+
 			context.setVariable(COUNT, allProducts.size());
-			
-			
+
 			webSalebleProducts = filterWebSalebleProducts(allProducts);
-			
+
 			nonWebSalebleProducts = filterNonWebSalebleProducts(allProducts);
-			
+
 			context.setVariable(PRODUCTS, nonWebSalebleProducts);
-			
+
 			context.setVariable(WEBSALEBLE_COUNT, webSalebleProducts.size());
+
 			context.setVariable(WEBSALEBLE_PRODUCTS, webSalebleProducts);
-			
+
 			engine.process(PRODUCTS_HTML, context, response.getWriter());
 
 		} catch (ConfigurationException e) {
-			
-			LOGGER.error("Exception occured while loading the properties file.."+ e);
-			
+
+			LOGGER.error("Exception occured while loading the properties file.." + e);
+
 			engine.process(ERRORPAGE_HTML, context, response.getWriter());
 
 		} catch (Exception e) {
-			
-			LOGGER.error("Exception occured while fetching the products and the exception is :"+ e);
-			
+
+			LOGGER.error("Exception occured while fetching the products and the exception is :" + e);
+
 			engine.process(ERRORPAGE_HTML, context, response.getWriter());
 
 		}
 	}
 
+	private List<Product> filterNonWebSalebleProducts(List<Product> prodlist) {
 
-	
-	private List<CustomProduct> filterNonWebSalebleProducts(List<CustomProduct> prodlist) {
-		
-		List<CustomProduct> nonWebSalebleProducts = new ArrayList<>();
-		
-		for(CustomProduct cp: prodlist) {
-			
-			if(!cp.getCustomWebSaleble()) {
-				
+		List<Product> nonWebSalebleProducts = new ArrayList<>();
+
+		for (Product cp : prodlist) {
+			if (!(boolean) cp.getCustomField("YY1_SaleableProduct_PRD")) {
+
 				nonWebSalebleProducts.add(cp);
 			}
 		}
-		
+
 		return nonWebSalebleProducts;
 	}
 
+	private List<Product> filterWebSalebleProducts(List<Product> prodlist) {
 
-	private List<CustomProduct> filterWebSalebleProducts(List<CustomProduct> prodlist) {
-		
-		List<CustomProduct> webSalebleProducts = new ArrayList<>();
-		
-		for(CustomProduct cp: prodlist) {
-			
-			if(cp.getCustomWebSaleble()) {
-				
+		List<Product> webSalebleProducts = new ArrayList<>();
+
+		for (Product cp : prodlist) {
+
+			if ((boolean) cp.getCustomField("YY1_SaleableProduct_PRD")) {
+
 				webSalebleProducts.add(cp);
 			}
 		}
-		
+
 		return webSalebleProducts;
+	}
+
+	public List<Product> findByProductGroup(String productGroup) throws Exception {
+
+		List<Product> productsList = null;
+		try {
+
+			LOGGER.info("productGroup :: " + productGroup);
+
+			productsList = defaultProductMasterService.getAllProduct().filter(Product.PRODUCT_GROUP.eq(productGroup))
+					.execute();
+
+		} catch (ODataException e) {
+
+			LOGGER.error("ODATA Exception occured in Product Service " + "while fetching the records :: ", e);
+
+			throw new Exception(e);
+		}
+		return productsList;
+
 	}
 
 }

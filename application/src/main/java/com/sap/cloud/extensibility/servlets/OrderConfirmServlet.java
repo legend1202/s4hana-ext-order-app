@@ -3,7 +3,7 @@ package com.sap.cloud.extensibility.servlets;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -38,22 +38,20 @@ public class OrderConfirmServlet extends HttpServlet {
 	private static final String ERRORPAGE_HTML = "errorpage.html";
 
 	@Inject
-	private SalesOrder salesorder;
-
-	@Inject
-	private SalesOrderItem salesOrderItem;
-
-	@Inject
 	private SalesOrderService salesOrderService;
 
 	@Inject
 	private OneTimeCustomerRecordService oneTimeCustomerRecordService;
 
+	private SalesOrder salesorder;
+
+	private SalesOrderItem salesOrderItem;
 	// Method to handle GET method request.
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		boolean successful = true;
-		
+
 		TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
 
 		WebContext context = new WebContext(request, response, request.getServletContext());
@@ -62,11 +60,11 @@ public class OrderConfirmServlet extends HttpServlet {
 
 			OneTimeCustomerOrder otcOrder = new OneTimeCustomerOrder();
 
-			LOGGER.info("request get parameter-->" + request.getParameter("firstName"));
-
 			setSalesOrderDetails(request);
 
-			salesorder.setCustomerPurchaseOrderDate(Calendar.getInstance());
+			LocalDateTime customerPurchaseOrderDate = LocalDateTime.now();
+
+			salesorder.setCustomerPurchaseOrderDate(customerPurchaseOrderDate);
 
 			// the result contains the newly created Sales Order number
 			SalesOrder soResult = salesOrderService.create(salesorder);
@@ -82,22 +80,24 @@ public class OrderConfirmServlet extends HttpServlet {
 			LOGGER.info("soResult::" + otcOrder.getId());
 
 			if (successful) {
-				
+
 				context.setVariable("createdSalesOrderId", soResult.getSalesOrder());
+
 				context.setVariable("createdOtcRecordId", otcOrder.getId());
+
 				engine.process("order-confirmation.html", context, response.getWriter());
-				
+
 			} else {
-				
+
 				context.setVariable("productId", request.getParameter("productId"));
-				
+
 				engine.process("order.html", context, response.getWriter());
 			}
 
 		} catch (Exception e) {
 
 			LOGGER.info("Exception occured while submitting the Post request for customer order creation ::" + e);
-			
+
 			engine.process(ERRORPAGE_HTML, context, response.getWriter());
 		}
 	}
@@ -121,7 +121,8 @@ public class OrderConfirmServlet extends HttpServlet {
 		PropertiesConfiguration config = new PropertiesConfiguration();
 
 		config.load("application.properties");
-
+		salesorder = new SalesOrder();
+		salesOrderItem = new SalesOrderItem();
 		// Note in this sample we pre-define most of the sales order with static values
 		// due to simplicity...
 
