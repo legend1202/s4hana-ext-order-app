@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: s4hana-ext-order-app-master
+Upstream-Name: s4hana-ext-order-app
 Upstream-Contact: Remya Ravindran (r.ravindran@sap.com)
-Source: https://github.com/SAP-samples/s4hana-ext-order-app-master
+Source: https://github.com/SAP-samples/s4hana-ext-order-app
 Disclaimer: The code in this project may include calls to APIs (â€œAPI Callsâ€) of
  SAP or third-party products or services developed outside of this project
  (â€œExternal Productsâ€).
@@ -25,5 +25,5 @@ Disclaimer: The code in this project may include calls to APIs (â€œAPI Calls
  parties the right to use of access any SAP External Product, through API Calls.
 
 Files: *
-Copyright: 2020-2022 SAP SE or an SAP affiliate company and s4hana-ext-order-app-master
+Copyright: 2019-2020 SAP SE or an SAP affiliate company and s4hana-ext-order-app
 License: Apache-2.0
