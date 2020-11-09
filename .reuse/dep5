@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: s4hana-ext-order-app
-Upstream-Contact: Remya Ravindran (r.ravindran@sap.com)
+Upstream-Contact: Satish Kumar Kamatam(s.kamatam@sap.com)
 Source: https://github.com/SAP-samples/s4hana-ext-order-app
 Disclaimer: The code in this project may include calls to APIs (â€œAPI Callsâ€) of
  SAP or third-party products or services developed outside of this project
