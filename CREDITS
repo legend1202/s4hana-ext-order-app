@@ -2,7 +2,7 @@ This program references the following third party open source or other free down
 The third party licensors of these components may provide additional license rights,
 terms and conditions and/or require certain notices as described below.
 
-API for SAP Cloud Platform (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.44.12 - https://hana.ondemand.com)
+API for SAP Business Technology Platform (BTP) (Java EE 7 Web Profile TomEE 7) (com.sap.cloud:neo-javaee7-wp-api:1.44.12 - https://hana.ondemand.com)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
 SAP S/4HANA - All (com.sap.cloud.s4hana:s4hana-all:2.20.1 - https://www.sap.com/s4sdk)
@@ -11,7 +11,7 @@ Licensed under SAP DEVELOPER LICENSE AGREEMENT
 SAP S/4HANA - Test Utilities (com.sap.cloud.s4hana:testutil:2.20.1 - https://www.sap.com/s4sdk)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
-Cloud Platform - SAP CP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.20.1 - https://www.sap.com/s4sdk)
+Business Technology Platform (BTP) - SAP BTP Neo (com.sap.cloud.s4hana.cloudplatform:scp-neo:2.20.1 - https://www.sap.com/s4sdk)
 Licensed under SAP DEVELOPER LICENSE AGREEMENT
 
 Quality - All Listeners (com.sap.cloud.s4hana.quality:listeners-all:2.20.1 - https://www.sap.com/s4sdk)

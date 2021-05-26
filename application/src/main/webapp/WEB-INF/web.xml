@@ -11,7 +11,7 @@
   </security-role>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>All SAP Cloud Platform users</web-resource-name>
+      <web-resource-name>All SAP Business Technology Platform (BTP) users</web-resource-name>
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
