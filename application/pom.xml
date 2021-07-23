@@ -23,10 +23,10 @@
         <proxy.port />
         <non.proxy.hosts />
 
-        <!-- Properties that are related to the SAP Cloud Platform. -->
+        <!-- Properties that are related to the SAP Business Technology Platform (BTP). -->
         <scp.sdkVersion>1.44.12</scp.sdkVersion>
 
-        <!-- this is the location of your local SAP CP Neo runtime -->
+        <!-- this is the location of your local SAP BTP Neo runtime -->
         <scp.sdkInstallPath>${project.basedir}/scp/sdk-${scp.sdkVersion}</scp.sdkInstallPath>
         <scp.sdkLocalServerContentPath>${project.basedir}/localServerContent</scp.sdkLocalServerContentPath>
         <scp.sdkErpEndpoint>${scp.sdkInstallPath}/server/config_master/service.destinations/destinations/ErpQueryEndpoint</scp.sdkErpEndpoint>
@@ -53,7 +53,7 @@
         <scp.username />
         <scp.password />
 
-        <!-- Required for SAP CP user session management and audit logging. -->
+        <!-- Required for SAP BTP user session management and audit logging. -->
         <scp.warImportPackage>com.sap.security.auth.service,com.sap.security.um.service.api,com.sap.core.service.auditlog.impl,com.sap.cloud.auditlog,com.sap.cloud.auditlog.exception,com.sap.cloud.auditlog.extension</scp.warImportPackage>
 
         <!-- Defines whether the deployment is productive or not. -->
@@ -144,7 +144,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- Plugin for deployment to SAP Cloud Platform Neo. -->
+                <!-- Plugin for deployment to SAP Business Technology Platform (BTP) Neo. -->
                 <plugin>
                     <groupId>com.sap.cloud</groupId>
                     <artifactId>neo-javaee7-wp-maven-plugin</artifactId>
@@ -227,7 +227,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- Plugin for deployment to local runtime of SAP Cloud Platform Neo. -->
+                <!-- Plugin for deployment to local runtime of SAP Business Technology Platform (BTP) Neo. -->
                 <plugin>
                     <groupId>com.sap.cloud.s4hana.plugins</groupId>
                     <artifactId>scp-neo-maven-plugin</artifactId>
@@ -300,7 +300,7 @@
             </properties>
         </profile>
 
-        <!-- Profile setting properties for deploying to the local SAP CP runtime. -->
+        <!-- Profile setting properties for deploying to the local SAP BTP runtime. -->
         <profile>
             <id>local-deploy</id>
             <activation>
@@ -317,7 +317,7 @@
             </properties>
         </profile>
 
-        <!-- Profile setting properties for deploying a productive version to SAP CP. -->
+        <!-- Profile setting properties for deploying a productive version to SAP BTP. -->
         <profile>
             <id>scp-deploy</id>
             <activation>
